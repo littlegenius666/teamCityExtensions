@@ -57,6 +57,8 @@
 		if (~buildType.indexOf("Functional Areas"))
 		{
 			return "QXAll";
+		} else {
+			return buildType;
 		}
 	}
 
