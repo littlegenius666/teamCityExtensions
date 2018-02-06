@@ -20,6 +20,7 @@
 		"Demo" : "Equity_TestAutomation_OnDemandTests_Demo",
 		"Missouri" : "Equity_TestAutomation_OnDemandTests_Missouri",
 		"Production" : "Equity_TestAutomation_OnDemandTests_Production"
+		"QXAll": "Equity_TestAutomation_AllTestsByPriorGroupOfFunctionalAreas_OnDemanForNightlyRun"
 	};
 
     var querySelectorForFailedTests = {
@@ -52,7 +53,11 @@
 	}
 
 	function getCurrentBuildEnvironment() {
-		return document.querySelector("li.buildType").innerText;
+		var buildType = document.querySelector("li.buildType").innerText;
+		if (~buildType.indexOf("Functional Areas"))
+		{
+			return "QXAll";
+		}
 	}
 
 	function getOnDemandBuildId() {
@@ -66,7 +71,8 @@
             alert("There is no any test for rerun for such option!");
             return;
         }
-        alert(getFailedTestsFilter(option));
+        //alert(getFailedTestsFilter(option));
+
 		var body = '<build><buildTypeId="' + getOnDemandBuildId() + '" /><properties><property name="filter.base" value="' + getFailedTestsFilter(option) + '" /></properties></build>';
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST", "/httpAuth/app/rest/buildQueue", true);
