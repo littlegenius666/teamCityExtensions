@@ -66,9 +66,8 @@
             alert("There is no any test for rerun for such option!");
             return;
         }
-        //alert(getFailedTestsFilter(option));
-
-		var body = '<build>' + '<buildType id="' + getOnDemandBuildId() + '" />' + '<properties>' + '<property name="filter.base" value="' + getFailedTestsFilter(option) + '" />' + '</properties>' + '</build>';
+        alert(getFailedTestsFilter(option));
+		var body = '<build><buildTypeId="' + getOnDemandBuildId() + '" /><properties><property name="filter.base" value="' + getFailedTestsFilter(option) + '" /></properties></build>';
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST", "/httpAuth/app/rest/buildQueue", true);
 		xhr.setRequestHeader('Content-Type', 'application/xml');
