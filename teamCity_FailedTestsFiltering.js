@@ -19,7 +19,7 @@
 		"QX" : "Equity_TestAutomation_OnDemandTests_Qx",
 		"Demo" : "Equity_TestAutomation_OnDemandTests_Demo",
 		"Missouri" : "Equity_TestAutomation_OnDemandTests_Missouri",
-		"Production" : "Equity_TestAutomation_OnDemandTests_Production"
+		"Production" : "Equity_TestAutomation_OnDemandTests_Production",
 		"QXAll": "Equity_TestAutomation_AllTestsByPriorGroupOfFunctionalAreas_OnDemanForNightlyRun"
 	};
 
