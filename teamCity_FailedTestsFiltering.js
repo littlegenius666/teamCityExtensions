@@ -54,7 +54,7 @@
 
 	function getCurrentBuildEnvironment() {
 		var buildType = document.querySelector("li.buildType").innerText;
-		if (~buildType.indexOf("Functional Areas"))
+		if (buildType.indexOf("Functional Areas") >= 0)
 		{
 			return "QXAll";
 		} else {
