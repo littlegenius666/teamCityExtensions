@@ -6,8 +6,8 @@
 // @author       Yelyzaveta Horbachenko
 // @include      *https://build.code.ipreo.com*
 // @grant        none
-// @downloadURL https://github.com/littlegenius666/teamCityExtensions/blob/master/teamCity_UpdateLoop.js
-// @updateURL https://github.com/littlegenius666/teamCityExtensions/blob/master/teamCity_UpdateLoop.js
+// @downloadURL https://github.com/littlegenius666/teamCityExtensions/raw/master/teamCity_UpdateLoop.js
+// @updateURL https://github.com/littlegenius666/teamCityExtensions/raw/master/teamCity_UpdateLoop.js
 // ==/UserScript==
 
 (function() {

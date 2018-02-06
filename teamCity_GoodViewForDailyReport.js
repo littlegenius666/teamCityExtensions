@@ -6,8 +6,8 @@
 // @author       Yelyzaveta Horbachenko
 // @match        https://build.code.ipreo.com/*buildId*
 // @grant        none
-// @downloadURL https://github.com/littlegenius666/teamCityExtensions/blob/master/teamCity_GoodViewForDailyReport.js
-// @updateURL https://github.com/littlegenius666/teamCityExtensions/blob/master/teamCity_GoodViewForDailyReport.js
+// @downloadURL https://github.com/littlegenius666/teamCityExtensions/raw/master/teamCity_GoodViewForDailyReport.js
+// @updateURL https://github.com/littlegenius666/teamCityExtensions/raw/master/teamCity_GoodViewForDailyReport.js
 // ==/UserScript==
 
 (function () {
