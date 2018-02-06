@@ -6,8 +6,8 @@
 // @author       Yelyzaveta Horbachenko
 // @include      *https://build.code.ipreo.com/viewLog.html?buildId=*
 // @grant        none
-// @downloadURL https://github.com/Dreamescaper/teamCityExtensions/raw/master/teamCity_FailedTestsFiltering.js
-// @updateURL https://github.com/Dreamescaper/teamCityExtensions/raw/master/teamCity_FailedTestsFiltering.js
+// @downloadURL https://github.com/littlegenius666/teamCityExtensions/blob/master/teamCity_FailedTestsFiltering.js
+// @updateURL https://github.com/littlegenius666/teamCityExtensions/blob/master/teamCity_FailedTestsFiltering.js
 // ==/UserScript==
 
 (function () {
