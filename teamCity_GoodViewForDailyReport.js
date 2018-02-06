@@ -3,7 +3,7 @@
 // @namespace    http://build.code.ipreo.com/
 // @version      0.1.6
 // @description  Extension for TeamCity, Add button to Action (Good view for Daily Report)
-// @author       Yelyzaveta Horbachenko
+// @author       Anton Ternov
 // @match        https://build.code.ipreo.com/*buildId*
 // @grant        none
 // @downloadURL https://github.com/littlegenius666/teamCityExtensions/raw/master/teamCity_GoodViewForDailyReport.js
