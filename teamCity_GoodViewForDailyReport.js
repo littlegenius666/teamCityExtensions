@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         TeamCity Extensions - Get Good view for Daily Report
+// @name         New TeamCity Extensions - Get Good view for Daily Report
 // @namespace    http://build.code.ipreo.com/
 // @version      0.1.6
 // @description  Extension for TeamCity, Add button to Action (Good view for Daily Report)

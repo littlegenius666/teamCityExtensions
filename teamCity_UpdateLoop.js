@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         TeamCity Extensions - main loop
+// @name         New TeamCity Extensions - main loop
 // @namespace    https://build.code.ipreo.com/
 // @version      0.1.3
 // @description  Base extension for TeamCity, containing main update loop

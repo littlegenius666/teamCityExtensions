@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         TeamCity Extensions - Add attachments links
+// @name         New TeamCity Extensions - Add attachments links
 // @namespace    http://build.code.ipreo.com/
 // @version      0.2.1
 // @description  Extension for TeamCity, adding attachments links
