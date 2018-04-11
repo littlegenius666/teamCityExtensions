@@ -235,7 +235,7 @@
                     var testNameId = testRow.querySelector("span[id*=testNameId]").id;
                     var testData = testsData[testNameId];
 
-                    if (testData.failureAmount != "" ) {
+                    if (testData.failureAmount == "" ) {
                         filteredCounter++;
 
                         testRow.setAttribute('filtered', 'true');
