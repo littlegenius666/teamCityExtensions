@@ -110,8 +110,8 @@
 
     function getTests() {
         return new Promise(function (resolve, reject) {
-            var testsElements = document.querySelectorAll('span[id*=testNameId]');
-
+			var failureAmounts = document.querySelectorAll("tr > td.testFailedInPart");
+			var testsElements = document.querySelectorAll('span[id*=testNameId]');
             if (tests && Object.keys(tests).length === testsElements.length) {
                 resolve(tests);
             }
@@ -125,14 +125,15 @@
                         var testNameId = testNameIdSpan.id;
                         tests[testNameId] = {};
                         var testData = tests[testNameId];
-
+						var failuresCell = failureAmounts[index];
+						var failures = failuresCell.innerText;
                         var testActionsPopupId = testsElements[index].querySelector("span[id*=testActionsPopup]").id;
                         var testActionsPopup = document.getElementById(testActionsPopupId + 'Content');
                         var buildLogIcon = testActionsPopup.querySelector("a.tc-icon_build-log");
                         var buildLogHref = buildLogIcon.href;
                         var testId = buildLogHref.substring(buildLogHref.lastIndexOf('=') + 1);
                         testData.testId = testId;
-
+						testData.failureAmount = failures;
                         var xhr = new XMLHttpRequest();
                         xhr.open("GET", "/failedTestText.html?buildId=" + buildId + "&testId=" + testId, true);
                         xhr.send();
@@ -221,6 +222,38 @@
         var displayValue = show ? "" : "none";
         document.getElementById('filter-tests-loading').style.display = displayValue;
     }
+	
+	function FilterTestsWithTwoFailures() {
+		return new Promise(function (resolve, reject) {
+            var onFulfilled = function (testsData) {
+                console.log('Filter tests with two failures);
+                var filteredCounter = 0;
+
+                var testRows = document.querySelectorAll('#idfailedDl table.testList > tbody > tr:not(.testDetailsRow)');
+                for (var i = 0; i < testRows.length; i++) {
+                    var testRow = testRows[i];
+                    var testNameId = testRow.querySelector("span[id*=testNameId]").id;
+                    var testData = testsData[testNameId];
+
+                    if ((testData.failureAmount != "" ) != positiveSearch) {
+                        filteredCounter++;
+
+                        testRow.setAttribute('filtered', 'true');
+                        testRow.style.display = 'none';
+                        if (testRow.className == 'testDetailsShown') {
+                            var testDetails = testRow.nextSibling;
+                            testDetails.setAttribute('filtered', 'true');
+                            testDetails.style.display = 'none';
+                        }
+                    }
+                }
+                console.log('Filtered rows: ' + filteredCounter);
+                resolve();
+            };
+
+            getTests().then(onFulfilled, reject);
+        });
+	}
 
     function addControls() {
         var toolbar = document.querySelector('#tst_group_build_failRefreshInner table.bulk-toolbar td.testNamePart');
@@ -240,6 +273,9 @@
 	<input class="btn" id="filter-tests-reset" type="button" value="Reset">
     <span style="float:right;padding-left:10px;" id="getfiltertc">
          <input class="btn" id="show-filter-for-rerun-unfiltered-tests" type="button" value="Get Filter for TC">
+    </span>
+	<span style="float:right;padding-left:10px;" id="filterTwoFailures">
+         <input class="btn" id="filter-tests-with-two-failures" type="button" value="Filter 2 failures">
     </span>
 </span>
 <span style="float:right;padding-right:50px;" id="rerunsection">
@@ -264,6 +300,9 @@
             var getFilterTCButton = document.getElementById('show-filter-for-rerun-unfiltered-tests');
 
             getFilterTCButton.onclick = showTCFilterForUnhiddenTests;
+			
+			var getFilterTCButton = document.getElementById('filter-tests-with-two-failures');
+            getFilterTCButton.onclick = FilterTestsWithTwoFailures;
 
             filterButton.onclick = function () {
                 showLoadingIcon(true);
