@@ -226,7 +226,7 @@
 	function FilterTestsWithTwoFailures() {
 		return new Promise(function (resolve, reject) {
             var onFulfilled = function (testsData) {
-                console.log('Filter tests with two failures);
+                console.log('Filter tests with two failures');
                 var filteredCounter = 0;
 
                 var testRows = document.querySelectorAll('#idfailedDl table.testList > tbody > tr:not(.testDetailsRow)');
