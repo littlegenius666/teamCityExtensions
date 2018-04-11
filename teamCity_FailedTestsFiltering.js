@@ -276,7 +276,7 @@
          <input class="btn" id="show-filter-for-rerun-unfiltered-tests" type="button" value="Get Filter for TC">
     </span>
 </span>
-<span style="float:right;padding-right:50px;" id="rerunsection">
+<span style="float:right;padding-right:30px;" id="rerunsection">
     Rerun failed tests:
     <input class="btn" id="rerun-all-failed" type="button" value="All">
 	<input class="btn" id="rerun-checked" type="button" value="Manually Checked">
