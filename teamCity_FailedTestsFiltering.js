@@ -271,11 +271,9 @@
 	<input class="textField" id="filter-tests-by" type="text">
 	<input class="btn" id="filter-tests-filter" type="button" value="Filter">
 	<input class="btn" id="filter-tests-reset" type="button" value="Reset">
+	<input class="btn" id="filter-tests-with-two-failures" type="button" value="Filter 2 failures">
     <span style="float:right;padding-left:10px;" id="getfiltertc">
          <input class="btn" id="show-filter-for-rerun-unfiltered-tests" type="button" value="Get Filter for TC">
-    </span>
-	<span style="float:right" id="filterTwoFailures">
-         <input class="btn" id="filter-tests-with-two-failures" type="button" value="Filter 2 failures">
     </span>
 </span>
 <span style="float:right;padding-right:50px;" id="rerunsection">
