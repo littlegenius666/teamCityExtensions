@@ -300,7 +300,11 @@
             getFilterTCButton.onclick = showTCFilterForUnhiddenTests;
 			
 			var getFilterTCButton = document.getElementById('filter-tests-with-two-failures');
-            getFilterTCButton.onclick = FilterTestsWithTwoFailures;
+            getFilterTCButton.onclick = function () {
+                showLoadingIcon(true);
+                FilterTestsWithTwoFailures()
+                    .then(function () { showLoadingIcon(false); });
+            };
 
             filterButton.onclick = function () {
                 showLoadingIcon(true);
