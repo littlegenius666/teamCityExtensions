@@ -112,6 +112,7 @@
         return new Promise(function (resolve, reject) {
 			var failureAmounts = document.querySelectorAll("tr > td.testFailedInPart");
 			var testsElements = document.querySelectorAll('span[id*=testNameId]');
+			var testRows = document.querySelectorAll('table.testList > tbody > tr:not(.testDetailsRow)');
             if (tests && Object.keys(tests).length === testsElements.length) {
                 resolve(tests);
             }
@@ -125,8 +126,12 @@
                         var testNameId = testNameIdSpan.id;
                         tests[testNameId] = {};
                         var testData = tests[testNameId];
-						var failuresCell = failureAmounts[index];
-						var failures = failuresCell.innerText;
+						var failuresCell = testRows[i].querySelector('td.testFailedInPart');
+						var failures = "";
+						if (failuresCell != null)
+						{
+							failures = failuresCell.innerText;
+						}
                         var testActionsPopupId = testsElements[index].querySelector("span[id*=testActionsPopup]").id;
                         var testActionsPopup = document.getElementById(testActionsPopupId + 'Content');
                         var buildLogIcon = testActionsPopup.querySelector("a.tc-icon_build-log");
