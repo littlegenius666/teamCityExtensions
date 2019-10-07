@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         New TeamCity Extensions - Get Good view for Daily Report
 // @namespace    http://build.code.ipreo.com/
-// @version      0.1.6
+// @version      0.1.7
 // @description  Extension for TeamCity, Add button to Action (Good view for Daily Report)
-// @author       Anton Ternov
+// @author       Yelyzaveta Horbachenko
 // @match        https://build.code.ipreo.com/*buildId*
 // @grant        none
 // @downloadURL https://github.com/littlegenius666/teamCityExtensions/raw/master/teamCity_GoodViewForDailyReport.js
@@ -35,29 +35,7 @@
 		}
 		return testNames;
 	}
-    function getSpacesNums(spaces){
-            var nums = [];
-
-            spaces.forEach(function (space) {
-                    nums.push(getSpaceTestCount(space));
-            }, Object.create(null));
-
-            return nums;
-     }
-    function getSpaceTestCount(space){
-            var str = space;
-            str = str.indexOf(":") >= 0 ? str.split(':').slice(-1)[0] : str;
-            var result = str.match( /([0-9A-Za-z_\.-]+) \((\d+)\)/i );
-            var testCount = parseInt(result[2]);
-            return testCount;
-    }
-    function getSpaceName (space){
-            var str = space;
-            str = str.indexOf(":") >= 0 ? str.split(':').slice(-1)[0] : str;
-            var result = str.match( /([0-9A-Za-z_\.-]+) \((\d+)\)/i );
-            var areaName = result[1];
-            return areaName;
-     }
+	
     function OpenGoodView(){
         var title = document.evaluate("//div[@class='select-all']/label", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
         var failed = document.evaluate("//p[@id='idfailed']/span[@class='failCount']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
@@ -68,26 +46,16 @@
 
         /*all areas*/
         var nodesArray = Array.prototype.slice.call(document.querySelectorAll("div[class*='group-div'] > div[class*='group-name']"));
-        var __spaces = nodesArray.map(function(e){return e.innerText;});
-        var __spacesDimension =  getSpacesNums(__spaces);
+        var __spaces = nodesArray.map(function(e){return e.querySelector("span.group-name-text").innerText;});
+        var __spacesDimension = nodesArray.map(function(e){return parseInt(e.querySelector("span.testCount").innerText.replace(/\(/g, ""), 10)})
 
         /*all failed tests*/
         var unhiddenTests = getFailedTests("filtered");
         var __allFailedTests = getFailedTests("all");
 
-        /*functions*/
-        function getFailedTestIndexByName(name){
-            var idx = __allFailedTests.indexOf(name);
-            return idx;
-        }
-        var decodeEntities = function(encodedString) {
-            var textArea = document.createElement('textarea');
-            textArea.innerHTML = encodedString;
-            return textArea.value;
-        };
-
+        /*functions*/		
         var getNumber = function(str){
-            var result = str.match( /(\d+)/i );
+            var result = str.match(/(\d+)/);
             var num = result[1];
             return num;
         };
@@ -102,25 +70,13 @@
             return info;
         };
 
-        var getSpacesLastTestIndexes = function(spaces){
-            var nums = [];
-            var counter = 0;
-
-            spaces.forEach(function (space) {
-                    counter += getSpaceTestCount(space);
-                    nums.push(counter);
-            }, Object.create(null));
-
-            return nums;
-        };
-
         var getSpaceNameForTestByTestIdx = function(unfilteredTestIdx){
             var spaceName = "";
             var counter = -1;
             for(var i=0;i<__spacesDimension.length;i++){
                 counter += __spacesDimension[i];
                 if(unfilteredTestIdx <= counter){
-                    return getSpaceName(__spaces[i]);
+                    return __spaces[i];
                 }
             }
             return spaceName;
@@ -135,7 +91,7 @@
 
             for(var i = 0 ; i < tests.length; i++)
             {
-                var unfilteredTestIdx = getFailedTestIndexByName(tests[i]);
+                var unfilteredTestIdx = __allFailedTests.indexOf(tests[i]);
                 var currentSpaceName = getSpaceNameForTestByTestIdx(unfilteredTestIdx);
                 if(lastSpaceName !== currentSpaceName){
                     lastSpaceName = currentSpaceName;
@@ -240,6 +196,7 @@
 
         goodView(titleValue, failedValue, passedValue, unhiddenTests);
     }
+	
     function addGoodReportView() {
         var action = document.querySelector('#sp_span_bdActionsContent  ul.menuList');
         if (action){
