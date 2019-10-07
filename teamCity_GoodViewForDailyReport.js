@@ -228,7 +228,7 @@
                            <div> <h1>  </h1>
 <div style="padding-bottom: 15px; font-size: 20px; font-family: "Segoe UI",Arial,sans-serif;">
     <div style="display:inline-block;"> Failed tests: </div>
-    <div style="display:inline-block; margin-left: 40px;margin-top:10px;"><input id="copybutton" class="button" type="button" value="Copy to Clipboard" onclick="selectElementContents( document.getElementById('tableId') );"></div>
+    <div style="display:inline-block; margin-left: 40px;margin-top:10px;"><input id="copybutton" class="button" type="button" value="Copy to Clipboard" onclick="selectElementContents( document.getElementById('tst_group_build_fail') );"></div>
     <div style="display:inline-block; padding-left:20px;margin: auto;"><span id="copiedstatus" style="color: #008CBA;"></span></div>
 </div>
 ` + failedTestsTable + ` </div>
