@@ -48,7 +48,7 @@
 
 	function getFailedTestsFilter(option) {
 		return getFailedTests(option).map(function (testName) {
-			return "FullyQualifiedName~" + testName;
+			return "Id~" + testName;
 		}).join("|");
 	}
 
